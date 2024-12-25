@@ -24,7 +24,7 @@ app.get('/', (req, res) => res.send(`
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      background-image: url('https://raw.githubusercontent.com/aws-samples/aws-elastic-beanstalk-express-js-sample/main/chritsmas_korea');
+      background-image: url('https://raw.githubusercontent.com/aws-samples/aws-elastic-beanstalk-express-js-sample/master/chritsmas_korea');
         background-repeat: no-repeat;
     }
     h1 {
