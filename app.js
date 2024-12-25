@@ -6,53 +6,161 @@ const port = process.env.PORT || 8080;
 
 app.get('/', (req, res) => res.send(`
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Helloooooooo AWS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Christmas!</title>
   <style>
     body {
-      background-color: #3498db; /* Initial background color */
-      color: white;
+      background-color: #1A4300; /* Dark green */
+      color: #FFF2CC; /* Off-white */
       text-align: center;
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-image: url('https://i.imgur.com/w1Lh1zS.png'); /* Replace with your Christmas image URL */
+       background-size: cover;
+        background-repeat: no-repeat;
     }
     h1 {
-      margin-top: 20%;
+      font-size: 3em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px #000; /* Add a text shadow */
     }
-    button {
+    p {
+      font-size: 1.2em;
+       text-shadow: 1px 1px 2px #000;
+    }
+    
+     button {
       padding: 10px 20px;
       font-size: 16px;
       margin-top: 20px;
       cursor: pointer;
       background-color: #ffffff;
-      color: #3498db;
+      color: #1A4300;
       border: none;
       border-radius: 5px;
     }
     button:hover {
-      background-color: #ecf0f1;
+      background-color: #f2f2f2;
     }
+
+    .snowflakes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+        display:none;
+  }
+  
+  .snowflake {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall linear infinite;
+  }
+  
+  .snowflake:nth-child(1) {
+    left: 10%;
+    animation-duration: 10s;
+  }
+  
+  .snowflake:nth-child(2) {
+    left: 20%;
+    animation-duration: 15s;
+    animation-delay: 2s;
+  }
+  
+  .snowflake:nth-child(3) {
+    left: 30%;
+    animation-duration: 12s;
+    animation-delay: -1s;
+  }
+  
+  .snowflake:nth-child(4) {
+    left: 40%;
+    animation-duration: 18s;
+    animation-delay: 1s;
+  }
+  
+  .snowflake:nth-child(5) {
+    left: 50%;
+    animation-duration: 14s;
+    animation-delay: 3s;
+  }
+  
+  .snowflake:nth-child(6) {
+    left: 60%;
+    animation-duration: 17s;
+    animation-delay: -2s;
+  }
+  
+  .snowflake:nth-child(7) {
+    left: 75%;
+    animation-duration: 11s;
+    animation-delay: 2s;
+  }
+  
+  .snowflake:nth-child(8) {
+    left: 90%;
+    animation-duration: 15s;
+    animation-delay: -3s;
+  }
+  
+  @keyframes fall {
+    0% {
+      top: -10px;
+    }
+    100% {
+      top: 100vh;
+    }
+  }
   </style>
 </head>
 <body>
-  <h1>Hello Cloud Computing! Welcome to AWS</h1>
-  <button onclick="changeBackgroundColor()">Change Background Color</button>
+  <h1>Merry Christmas!</h1>
+  <p>Happy Holidays from your Cloud Server!</p>
+  <button onclick="toggleSnow()">Let it Snow!</button>
+  <div class="snowflakes" aria-hidden="true">
+                    <div class="snowflake"></div>
+                    <div class="snowflake"></div>
+                    <div class="snowflake"></div>
+                    <div class="snowflake"></div>
+                    <div class="snowflake"></div>
+                    <div class="snowflake"></div>
+                    <div class="snowflake"></div>
+                    <div class="snowflake"></div>
+    </div>
   <script>
-    function changeBackgroundColor() {
-      // Array of colors to cycle through
-      const colors = ['#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6', '#1abc9c', '#e67e22', '#34495e'];
-      // Select a random color from the array
-      const randomColor = colors[Math.floor(Math.random() * colors.length)];
-      // Change the body's background color
-      document.body.style.backgroundColor = randomColor;
-    }
+      function toggleSnow() {
+          const snowflakes = document.querySelector('.snowflakes');
+           if (snowflakes.style.display === 'none' || snowflakes.style.display === '') {
+            snowflakes.style.display = 'block';
+            document.querySelector('button').innerText="Stop the Snow!"
+        } else {
+            snowflakes.style.display = 'none';
+            document.querySelector('button').innerText="Let it Snow!"
+        }
+      }
+    
   </script>
 </body>
 </html>
 `));
 
 app.listen(port, () => {
-  console.log(`App running on port ${port}`);
+  console.log(`Christmas app running on port ${port}`);
 });
