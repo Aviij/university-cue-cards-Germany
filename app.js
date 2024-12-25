@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const axios = require('axios');
 
 // Use the environment port or default to 8080
 const port = process.env.PORT || 8080;
@@ -143,6 +144,7 @@ app.get('/', (req, res) => res.send(`
                     <div class="snowflake"></div>
                     <div class="snowflake"></div>
     </div>
+  <div id="api-message"></div>
   <script>
       function toggleSnow() {
           const snowflakes = document.querySelector('.snowflakes');
@@ -154,11 +156,39 @@ app.get('/', (req, res) => res.send(`
             document.querySelector('button').innerText="Let it Snow!"
         }
       }
-    
+
+    // Function to call the API and update the message
+        async function fetchChristmasMessage() {
+          try {
+              const response = await fetch('/api/christmas');
+              if (response.ok) {
+                const message = await response.text();
+                  document.getElementById('api-message').textContent = message;
+              }
+              else {
+                 document.getElementById('api-message').textContent = 'Error fetching from API';
+                }
+          } catch (error) {
+               document.getElementById('api-message').textContent = 'Error fetching from API';
+          }
+        }
+        
+    // Call fetchChristmasMessage when the page loads
+     fetchChristmasMessage();
   </script>
 </body>
 </html>
 `));
+
+app.get('/api/christmas', async (req, res) => {
+  try {
+    const apiUrl = process.env.API_URL; // Using environment variable
+    const response = await axios.post(apiUrl);
+    res.send(response.data);
+  } catch (error) {
+    res.status(500).send('Error fetching data');
+  }
+});
 
 app.listen(port, () => {
   console.log(`Christmas app running on port ${port}`);
