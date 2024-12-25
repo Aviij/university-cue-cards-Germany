@@ -24,8 +24,7 @@ app.get('/', (req, res) => res.send(`
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      background-image: url('https://i.imgur.com/w1Lh1zS.png'); /* Replace with your Christmas image URL */
-       background-size: cover;
+      background-image: url('https://raw.githubusercontent.com/aws-samples/aws-elastic-beanstalk-express-js-sample/main/christmas_korea.jpg');
         background-repeat: no-repeat;
     }
     h1 {
